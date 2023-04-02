@@ -28,4 +28,12 @@ app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
 app.use('/api', commentRoute_1.default);
 app.use('/movie', movieRoute_1.default);
 app.use('/people', characterRoute_1.default);
+app.use(function (err, req, res, 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+_next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get("env") === "development" ? err : {};
+    res.status(err.status || 500);
+});
 exports.default = app;
