@@ -1,0 +1,69 @@
+openapi: 3.0.3
+info:
+  title: STAR-API
+  version: 1.0.0
+  contact: {}
+servers:
+  - url: http://localhost
+paths:
+  /movie/moviesList:
+    get:
+      summary: Get movieList
+      description: Get movieList
+      operationId: getMovielist
+      responses:
+        '200':
+          description: ''
+  /people/characters:
+    get:
+      summary: Get Characters
+      description: Get Characters
+      operationId: getCharacters
+      parameters:
+        - name: ''
+          in: query
+          schema:
+            type: string
+        - name: sort
+          in: query
+          schema:
+            type: string
+            example: height:desc
+      responses:
+        '200':
+          description: ''
+  /api/getComments:
+    get:
+      summary: Get comments
+      description: Get comments
+      operationId: getComments
+      responses:
+        '200':
+          description: ''
+  /api/comments/{urlId}:
+    parameters:
+      - in: path
+        name: urlId
+        schema:
+          type: integer
+        required: true
+        description: The comment urlID
+    post:
+      summary: Create comment
+      description: Create comment
+      operationId: createComment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+                  example: This grst is helllo
+            example:
+              comment: This grst is helllo
+      responses:
+        '200':
+          description: ''
+tags: []

@@ -8,8 +8,19 @@ import commentRouter from './routes/commentRoute';
 import movieRouter from './routes/movieRoute'
 import characterRouter from "./routes/characterRoute";
 // var usersRouter = require('./routes/users');
-
 const app = express();
+
+app.use("/api", commentRouter);
+app.use("/movie", movieRouter);
+app.use("/people", characterRouter);
+
+//swagger api documentation
+import swaggerUI from 'swagger-ui-express';
+import YAML from 'yamljs';
+
+const swaggerDocs = YAML.load("./documentation.yaml");
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
+
 database.sync()
   .then(() => {
     // eslint-disable-next-line no-console
@@ -24,10 +35,5 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/api', commentRouter);
-app.use('/movie', movieRouter);
-app.use('/people', characterRouter)
-
 
 export default app;
