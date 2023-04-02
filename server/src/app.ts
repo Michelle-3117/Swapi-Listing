@@ -29,18 +29,5 @@ app.use('/api', commentRouter);
 app.use('/movie', movieRouter);
 app.use('/people', characterRouter)
 
-app.use(function (
-  err: createError.HttpError,
-  req: express.Request,
-  res: express.Response,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  _next: express.NextFunction
-) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
-
-  res.status(err.status || 500);
-});
 
 export default app;

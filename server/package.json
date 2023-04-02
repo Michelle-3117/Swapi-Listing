@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "CI= NODE_ENV=production node ./bin/www",
+    "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
     "build": "yarn tsc",
     "compile": "yarn tsc -w"
