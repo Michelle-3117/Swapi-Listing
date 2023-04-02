@@ -24,7 +24,6 @@ function getMovies(req, res) {
             //fetch movies from the star wars api
             const response = yield axios_1.default.get(url);
             const movies = response.data.results;
-            console.log(movies);
             //extract the unique identifer from the url 
             let movieUrl = "";
             let urlId = '';

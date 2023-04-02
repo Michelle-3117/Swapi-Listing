@@ -17,6 +17,7 @@ app.use("/people", characterRouter);
 //swagger api documentation
 import swaggerUI from 'swagger-ui-express';
 import YAML from 'yamljs';
+import bodyParser from "body-parser";
 
 const swaggerDocs = YAML.load("./documentation.yaml");
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
@@ -29,7 +30,7 @@ database.sync()
   // eslint-disable-next-line no-console
     .catch((error: any) => console.log(error));
   
-
+app.use(bodyParser.json());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

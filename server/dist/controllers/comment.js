@@ -34,12 +34,14 @@ function createComment(req, res) {
                 ipAddress: req.ip,
                 createdAt: new Date(),
             });
+            console.log(req.body);
             return res.status(201).json({
                 message: 'Comment created sucessfully',
                 record,
             });
         }
         catch (error) {
+            console.log(error);
             return res.status(500)
                 .json({
                 error: "Internal server error",

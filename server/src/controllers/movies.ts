@@ -10,7 +10,7 @@ export async function getMovies(req: Request, res: Response) {
       //fetch movies from the star wars api
       const response = await axios.get(url);
       const movies = response.data.results;
-      console.log(movies)
+      
         //extract the unique identifer from the url 
       let movieUrl = "";
       let urlId = '';

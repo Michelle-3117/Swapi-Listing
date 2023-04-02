@@ -10,13 +10,13 @@ interface CommentAttributes{
 }
 
 export class CommentInstance extends Model<CommentAttributes>{
-    [x: string]: any;
+
 }
 
 CommentInstance.init(
   {
     id: {
-      type: DataTypes.CHAR(36),
+      type: DataTypes.UUIDV4,
       primaryKey: true,
       allowNull: false,
     },
@@ -25,7 +25,7 @@ CommentInstance.init(
       allowNull: false,
     },
     comment: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [1, 500],
@@ -43,6 +43,6 @@ CommentInstance.init(
   },
   {
     sequelize: database,
-    modelName: "Comment",
+    modelName: "comment",
   },
 );

@@ -19,6 +19,7 @@ app.use("/people", characterRoute_1.default);
 //swagger api documentation
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const yamljs_1 = __importDefault(require("yamljs"));
+const body_parser_1 = __importDefault(require("body-parser"));
 const swaggerDocs = yamljs_1.default.load("./documentation.yaml");
 app.use("/api-docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerDocs));
 database_config_1.default.sync()
@@ -28,6 +29,7 @@ database_config_1.default.sync()
 })
     // eslint-disable-next-line no-console
     .catch((error) => console.log(error));
+app.use(body_parser_1.default.json());
 app.use((0, morgan_1.default)('dev'));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));

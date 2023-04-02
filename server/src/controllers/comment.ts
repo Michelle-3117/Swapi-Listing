@@ -16,18 +16,20 @@ export async function createComment(req: Request, res: Response) {
         let { urlId } = req.params
         //create and store the comment in the database
         const record = await CommentInstance.create({
-            id: newId,
-            movieId: urlId,
-            comment: value.comment,
-            ipAddress: req.ip,
-            createdAt: new Date(),
+          id: newId,
+          movieId: urlId,
+          comment: value.comment,
+          ipAddress: req.ip,
+          createdAt: new Date(),
         });
-    
+
+        console.log(req.body)
         return res.status(201).json({
             message: 'Comment created sucessfully',
             record,
         });
     } catch (error) {
+        console.log(error)
         return res.status(500)
             .json({
                 error: "Internal server error",

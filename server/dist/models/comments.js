@@ -11,7 +11,7 @@ class CommentInstance extends sequelize_1.Model {
 exports.CommentInstance = CommentInstance;
 CommentInstance.init({
     id: {
-        type: sequelize_1.DataTypes.CHAR(36),
+        type: sequelize_1.DataTypes.UUIDV4,
         primaryKey: true,
         allowNull: false,
     },
@@ -20,7 +20,7 @@ CommentInstance.init({
         allowNull: false,
     },
     comment: {
-        type: sequelize_1.DataTypes.TEXT,
+        type: sequelize_1.DataTypes.STRING,
         allowNull: false,
         validate: {
             len: [1, 500],
@@ -37,5 +37,5 @@ CommentInstance.init({
     },
 }, {
     sequelize: database_config_1.default,
-    modelName: "Comment",
+    modelName: "comment",
 });
