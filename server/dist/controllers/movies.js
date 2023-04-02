@@ -24,9 +24,11 @@ function getMovies(req, res) {
             //fetch movies from the star wars api
             const response = yield axios_1.default.get(url);
             const movies = response.data.results;
+            console.log(movies);
             //extract the unique identifer from the url 
             let movieUrl = "";
-            let urlId;
+            let urlId = '';
+            let count = 0;
             movies.forEach((movie) => {
                 movieUrl = movie.url;
                 urlId = movieUrl[movieUrl.length - 2];
@@ -52,12 +54,16 @@ function getMovies(req, res) {
             });
             //  Combine the movie data and comment count data into a single res object
             const data = movies.map((movie) => {
-                const movieCommentCount = commentCounts.find((commentCount) => commentCount.movieId == urlId);
+                const movieCommentCount = commentCounts.find((commentCount) => commentCount.dataValues ==
+                    movies.forEach((movie) => {
+                        movieUrl = movie.url;
+                        return movieUrl[movieUrl.length - 2];
+                    }), count++);
                 return {
                     title: movie.title,
                     release_date: movie.release_date,
                     opening_crawl: movie.opening_crawl,
-                    comment_count: movieCommentCount,
+                    comment_count: commentCounts,
                     characters: movie.characters,
                 };
             });

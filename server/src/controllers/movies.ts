@@ -10,10 +10,11 @@ export async function getMovies(req: Request, res: Response) {
       //fetch movies from the star wars api
       const response = await axios.get(url);
       const movies = response.data.results;
-    
+      console.log(movies)
         //extract the unique identifer from the url 
-        let movieUrl = "";
-        let urlId: string;
+      let movieUrl = "";
+      let urlId = '';
+      let count = 0
         movies.forEach((movie: { url: any; }) => {
         movieUrl = movie.url
         urlId = movieUrl[movieUrl.length - 2]
@@ -40,7 +41,7 @@ export async function getMovies(req: Request, res: Response) {
         where: {
           movieId: {
             [Op.in]: movies.map(
-              (movie: { url: any }) => movie.url.split("/").slice(-2, -1)[0]
+              (movie: { url: string; }) => movie.url.split("/").slice(-2, -1)[0]
             ),
           },
         },
@@ -57,13 +58,19 @@ export async function getMovies(req: Request, res: Response) {
           episode_id: string;
         }) => {
           const movieCommentCount = commentCounts.find(
-            (commentCount) => commentCount.movieId == urlId
-            );
+            (commentCount) =>
+              commentCount.dataValues ==
+              movies.forEach((movie: { url: any }) => {
+                movieUrl = movie.url;
+                return movieUrl[movieUrl.length - 2];
+              }),
+            count++
+          );
           return {
             title: movie.title,
             release_date: movie.release_date,
             opening_crawl: movie.opening_crawl,
-            comment_count: movieCommentCount,
+            comment_count: commentCounts,
             characters: movie.characters,
           };
         }
