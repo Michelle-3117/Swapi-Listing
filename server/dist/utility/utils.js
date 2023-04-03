@@ -7,7 +7,7 @@ exports.options = exports.createCommentSchema = void 0;
 const joi_1 = __importDefault(require("joi"));
 exports.createCommentSchema = joi_1.default.object()
     .keys({
-    comment: joi_1.default.string().required().max(500),
+    comment: joi_1.default.string().required().max(500)
 });
 exports.options = {
     abortEarly: false,

@@ -21,10 +21,9 @@ function createComment(req, res) {
             const { error, value } = utils_1.createCommentSchema.validate(req.body, utils_1.options);
             if (error) {
                 return res.status(400).json({
-                    error: error.details[0].message
+                    error: error.details[0].message,
                 });
             }
-            ;
             let { urlId } = req.params;
             //create and store the comment in the database
             const record = yield comments_1.CommentInstance.create({
@@ -34,18 +33,16 @@ function createComment(req, res) {
                 ipAddress: req.ip,
                 createdAt: new Date(),
             });
-            console.log(req.body);
             return res.status(201).json({
-                message: 'Comment created sucessfully',
+                message: "Comment created sucessfully",
                 record,
             });
         }
         catch (error) {
             console.log(error);
-            return res.status(500)
-                .json({
+            return res.status(500).json({
                 error: "Internal server error",
-                message: error
+                message: error,
             });
         }
     });
@@ -59,7 +56,7 @@ function getComments(req, res) {
             });
             res.status(200).json({
                 message: "All comments fetched successfully",
-                comments
+                comments,
             });
         }
         catch (error) {

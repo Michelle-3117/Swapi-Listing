@@ -4,16 +4,16 @@ import { ParsedQs } from "qs";
 import _ from "lodash";
 
 export async function getCharacters(req: Request, res: Response) {
-  const { sort, name, gender } = req.query as unknown as {[key: string]: any};
+  const { sort, name, gender } = req.query as unknown as { [key: string]: any };
   try {
     const response = await axios.get(`https://swapi.dev/api/people/`);
     let characters = response.data.results;
-    
+
     //sort
     if (sort) {
       const [field, order] = sort.split(":");
-      console.log("sort")
-      console.log(order)
+      console.log("sort");
+      console.log(order);
       characters = _.orderBy(characters, [field], [order]);
     }
     // Filter by name

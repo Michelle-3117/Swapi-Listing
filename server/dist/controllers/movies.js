@@ -19,14 +19,14 @@ const comments_1 = require("../models/comments");
 const database_config_1 = __importDefault(require("../db/database.config"));
 function getMovies(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const url = 'https://swapi.dev/api/films';
+        const url = "https://swapi.dev/api/films";
         try {
             //fetch movies from the star wars api
             const response = yield axios_1.default.get(url);
             const movies = response.data.results;
-            //extract the unique identifer from the url 
+            //extract the unique identifer from the url
             let movieUrl = "";
-            let urlId = '';
+            let urlId = "";
             let count = 0;
             movies.forEach((movie) => {
                 movieUrl = movie.url;
@@ -74,7 +74,7 @@ function getMovies(req, res) {
         catch (error) {
             return res.status(500).json({
                 error: "Internal server error",
-                message: error
+                message: error,
             });
         }
     });
